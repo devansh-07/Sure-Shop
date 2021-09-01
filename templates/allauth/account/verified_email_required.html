@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container mt-5">
+        <div class="content-section">
+            <legend class="border-bottom mb-4">{% trans "Verify Your E-mail Address" %}</legend>
+
+            {% url 'account_email' as email_url %}
+
+            <div style="background-color: #fff782; border-radius: 5px;" class="">
+
+                <p class="mx-3" >{% blocktrans %}This part of the site requires us to verify that
+                you are who you claim to be. For this purpose, we require that you
+                verify ownership of your e-mail address. {% endblocktrans %}</p>
+            </div>
+
+            <p>{% blocktrans %}We have sent an e-mail to you for
+            verification. Please click on the link inside this e-mail. Please
+            contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+
+            <p>{% blocktrans %}<strong>Note:</strong> you can still <a class="anchor" href="{{ email_url }}">change your e-mail address</a>.{% endblocktrans %}</p>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "account/email/base_email_message.html" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}
+{% autoescape off %}
+{% user_display user as user_display %}
+
+<!-- Intro -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td style="padding-bottom: 10px;">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td class="tbrr p30-15" style="padding: 60px 30px; border-radius:26px 26px 0px 0px;" bgcolor="#12325c">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td class="h1 pb25" style="color:#ffffff; font-family:'Muli', Arial,sans-serif; font-size:36px; line-height:46px; text-align:center; padding-bottom:20px;">Welcome, {{ user_display }}</td>
+							</tr>
+							<tr>
+								<td class="text-center pb25" style="color:#c1cddc; font-family:'Muli', Arial,sans-serif; font-size:16px; line-height:30px; text-align:center; padding-bottom:25px;">
+                                    <span>
+                                        You have been successfully registered on {{ current_site.name }}.
+                                        <br>
+                                        Click on the button below to confirm your Email address.
+                                    </span>
+                                </td>
+							</tr>
+							<!-- Button -->
+							<tr>
+								<td align="center">
+									<table class="center" border="0" cellspacing="0" cellpadding="0" style="text-align:center;">
+										<tr>
+											<td class="pink-button text-button" style="background:#ff6666; color:#c1cddc; font-family:'Muli', Arial,sans-serif; font-size:14px; line-height:18px; padding:12px 30px; text-align:center; border-radius:0px 22px 22px 22px; font-weight:bold;"><a href="{{ activate_url }}" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none;"><span class="link-white" style="color:#ffffff; text-decoration:none;">CONFIRM EMAIL</span></a></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<!-- END Button -->
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<!-- END Intro -->
+
+{% endautoescape %}
+{% endblock %}

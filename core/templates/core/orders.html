@@ -1,0 +1,68 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<main>
+    <div class="container">
+        <div class="table-responsive">
+            <div class="my-4">
+                <div class="">
+                    <h2>Previous Orders</h2>
+                </div>
+                <hr>
+            </div>
+
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+
+                        <th scope="col">Ordered on</th>
+                        <th scope="col">Shipping Address</th>
+                        <th scope="col">Items</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+
+                            <td class="">{{ order.ordered_date|date:'h:i A, d M, Y' }}</td>
+                            <td class="">{{ order.shipping_address.get_complete_address }}</td>
+
+                            <td class="">
+                                {% for order_item in order.items.all %}
+                                    <h6 class="mb-2">
+                                        {{ order_item.quantity }}
+                                        <span class="text-muted">x</span>
+                                        <a class="text-primary" href="{% url 'core:product' slug=order_item.item.slug %}">
+                                            {{ order_item.item.name }}
+                                        </a>
+                                    </h6>
+                                {% endfor %}
+                            </td>
+
+                            <td>
+                                <strong>
+                                    Rs. {{ order.payment.amount }}
+                                </strong>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6">
+                                <h6 class="text-center">
+                                    No orders.
+                                </h6>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

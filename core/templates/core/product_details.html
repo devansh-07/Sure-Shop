@@ -1,0 +1,57 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<main class="">
+    <div class="container dark-grey-text mt-5">
+
+        <div class="row wow fadeIn">
+            <div class="col-md-4 mb-4 text-center">
+                <img src="{{ object.image.url }}" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-md-8 mb-4">
+                <div class="px-4">
+                    <div class="mb-3">
+                        <h3>
+                            <strong>
+                                {{ object.name }}
+                            </strong>
+                        </h3>
+                    </div>
+
+                    <div class="mb-3">
+                        <a href="">
+                            <span class="badge purple mr-1 px-2">{{ object.get_category_display }}</span>
+                        </a>
+                    </div>
+
+                    <p class="lead">
+                        {% if object.discount_price %}
+                        <span class="mr-1">
+                            <del>Rs. {{ object.price }}</del>
+                        </span>
+                        <span>Rs. {{ object.discount_price }}</span>
+                        {% else %}
+                        <span>Rs. {{ object.price }}</span>
+                        {% endif %}
+                    </p>
+
+                    <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md m-0">Add to cart
+                        <i class="fas fa-shopping-cart ml-1"></i>
+                    </a>
+
+                    <hr class="my-5">
+
+                    <div class="">
+                        <h4 class="my-4">Description</h4>
+                        <p>
+                            {{ object.description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+{% endblock content %}
